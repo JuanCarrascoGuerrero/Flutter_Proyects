@@ -1,0 +1,1 @@
+[{"paper_id":"2","paper":"Paper A","file":"http:\/\/mapi.trycatchtech.com\/uploads\/twelfth_question_papers\/3220f59df02c81effc3f5658fd633d67.pdf","year_id":"1"},{"paper_id":"1","paper":"Paper B","file":"http:\/\/mapi.trycatchtech.com\/uploads\/twelfth_question_papers\/11e48b4c353dc91dee88baf56aefd32f.pdf","year_id":"1"}]

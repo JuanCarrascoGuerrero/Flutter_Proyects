@@ -23,4 +23,5 @@ class FilesApi {
     static List<FilesApi> listOfJsons (List response){
       return response.map((e)=>FilesApi.fromJson(e)).toList();
     }
+    
 }

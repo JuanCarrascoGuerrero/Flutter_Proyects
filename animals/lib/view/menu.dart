@@ -1,22 +1,17 @@
 import 'package:animals/controller/dataController.dart';
-import 'package:animals/controller/triangleClipper.dart';
-import 'package:animals/view/detailAnimal.dart';
-import 'package:animals/view/menu.dart';
+import 'package:animals/view/dashboard.dart';
 import 'package:animals/view/ppd.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
 
-class Dashboard extends StatefulWidget {
-  final String category; //Passed string on call to class
-  const Dashboard(this.category, {super.key});
+class Menu extends StatefulWidget {
+  const Menu({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<Menu> createState() => _MenuState();
 }
 
-class _DashboardState extends State<Dashboard> {
-
+class _MenuState extends State<Menu> {
   @override
   void initState() {
     context.read<Datacontroller>().loadAnimals();
@@ -26,7 +21,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            appBar: AppBar(),
+      appBar: AppBar(),
       drawer: Drawer(
         child: Stack(
           children: [
@@ -110,56 +105,49 @@ class _DashboardState extends State<Dashboard> {
       body:
           context.watch<Datacontroller>().getModel == null
               ? Center(child: CircularProgressIndicator())
-              : SingleChildScrollView(
-                child: Center(
-                  child: Column(
-                    children: [
-                      for (var i
-                          in widget.category==""? context.watch<Datacontroller>().getModel ?? []
-                          : context.watch<Datacontroller>().getAnimalsByCategory(widget.category)) ...[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: GestureDetector(
-                            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailAnimal(i)));},  //"Acces to detail with ringtone, etc..."
-                            child: Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/animals/" + i.image!,
-                                ), // Use your image path
-                                Positioned(
-                                  bottom: 0,
-                                  right: 0,
-                                  child: ClipPath(
-                                    clipper: TriangleClipper(),
-                                    child: Container(
-                                      width: 230, // Increase width
-                                      height: 80, // Increase height
-                                      color: Color.fromARGB(
-                                        i.color?[0] ?? 255, // Default to 255 if null
-                                        i.color?[1] ?? 0, // Default to 0 if null
-                                        i.color?[2] ?? 0, // Default to 0 if null
-                                        i.color?[3] ?? 255, // Default to 255 if null
-                                      ),
-                                      padding: EdgeInsets.all(8.0),
-                                      alignment: Alignment.bottomRight,
-                                      child: Text(
-                                        i.name!,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
+              : GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10
                 ),
+                children: [
+                  Image.asset("assets/animals/all_animals.png"),
+                  for (var i
+                      in context.watch<Datacontroller>().findCategoriesWithColors()) ...[
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard(i["category"])));
+                          },
+                          child: Image.asset(
+                            "assets/animals/" + i["category"].toLowerCase().replaceAll(" ", "_") + ".png",
+                                      width: 150, height: 550, fit: BoxFit.cover,),
+                        ),                     
+                        Positioned(// Overlay Rectangle at Bottom
+                            bottom: 0, // Positions it at the bottom of the image
+                            left: 25,right: 25,
+                            child: Container(
+                              alignment: Alignment.center,
+                                    height: 50,width: 150, // Adjust height for 20% coverage
+                                    color: Color.fromARGB(
+                                            i["color"][0],  // Access first color value
+                                              i["color"][1],  // Access second color value
+                                              i["color"][2],  // Access third color value
+                                              i["color"][3], ), // Semi-transparent background
+                                    child: Center(
+                                          child: Text(i["category"], // Category name 
+                                                  style: TextStyle(color: Colors.white, fontSize: 14),),
+                                                ),
+                                              ),
+                                    ),
+                      ],
+                    ),
+                  ],
+                  Image.asset("assets/animals/add.png"),
+                ],
               ),
     );
   }

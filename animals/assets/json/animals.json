@@ -1,0 +1,258 @@
+[
+  {
+    "id": 1,
+    "name": "Pelican",
+    "color": [255, 175, 157, 76],
+    "category": "Birds",
+    "image": "pelican.png",
+    "favourite": false
+  },
+  {
+    "id": 2,
+    "name": "Alpaca",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "alpaca.png",
+    "favourite": false
+  },
+  {
+    "id": 3,
+    "name": "Chick",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "chick.png",
+    "favourite": false
+  },
+  {
+    "id": 4,
+    "name": "Cock",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "cock.png",
+    "favourite": false
+  },
+  {
+    "id": 5,
+    "name": "Cow",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "cow.png",
+    "favourite": false
+  },
+  {
+    "id": 6,
+    "name": "Duck",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "duck.png",
+    "favourite": false
+  },
+  {
+    "id": 7,
+    "name": "Goat",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "goat.png",
+    "favourite": false
+  },
+  {
+    "id": 8,
+    "name": "Sheep",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "sheep.png",
+    "favourite": false
+  },
+  {
+    "id": 9,
+    "name": "Turkey",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "turkey.png",
+    "favourite": false
+  },
+  {
+    "id": 10,
+    "name": "Zebu",
+    "color": [255, 79, 175, 76],
+    "category": "Farm Animals",
+    "image": "zebu.png",
+    "favourite": false
+  },
+  {
+    "id": 11,
+    "name": "Bee",
+    "color": [255, 175, 106, 76],
+    "category": "Insects",
+    "image": "bee.png",
+    "favourite": false
+  },
+  {
+    "id": 12,
+    "name": "Grasshopper",
+    "color": [255, 175, 106, 76],
+    "category": "Insects",
+    "image": "grasshopper.png",
+    "favourite": false
+  },
+  {
+    "id": 13,
+    "name": "Mosquito",
+    "color": [255, 175, 106, 76],
+    "category": "Insects",
+    "image": "mosquito.png",
+    "favourite": false
+  },
+  {
+    "id": 14,
+    "name": "Wasp",
+    "color": [255, 175, 106, 76],
+    "category": "Insects",
+    "image": "wasp.png",
+    "favourite": false
+  },
+  {
+    "id": 15,
+    "name": "Bull",
+    "color": [255, 169, 87, 204],
+    "category": "Land Animals",
+    "image": "bull.png",
+    "favourite": false
+  },
+  {
+    "id": 16,
+    "name": "Rabbit",
+    "color": [255, 169, 87, 204],
+    "category": "Land Animals",
+    "image": "rabbit.png",
+    "favourite": false
+  },
+  {
+    "id": 17,
+    "name": "Elephant",
+    "color": [255, 198, 58, 8],
+    "category": "Mammals",
+    "image": "elephant.png",
+    "favourite": false
+  },
+  {
+    "id": 18,
+    "name": "Gorilla",
+    "color": [255, 198, 58, 8],
+    "category": "Mammals",
+    "image": "gorilla.png",
+    "favourite": false
+  },
+  {
+    "id": 19,
+    "name": "Mouse",
+    "color": [255, 198, 58, 8],
+    "category": "Mammals",
+    "image": "mouse.png",
+    "favourite": false
+  },
+  {
+    "id": 20,
+    "name": "Cat",
+    "color": [255, 227, 145, 200],
+    "category": "Pet Animals",
+    "image": "cat.png",
+    "favourite": false
+  },
+  {
+    "id": 21,
+    "name": "Dog",
+    "color": [255, 227, 145, 200],
+    "category": "Pet Animals",
+    "image": "dog.png",
+    "favourite": false
+  },
+  {
+    "id": 22,
+    "name": "Guinea",
+    "color": [255, 227, 145, 200],
+    "category": "Pet Animals",
+    "image": "guinea.png",
+    "favourite": false
+  },
+  {
+    "id": 23,
+    "name": "Chameleon",
+    "color": [255, 35, 168, 132],
+    "category": "Reptiles & Amphibians",
+    "image": "chameleon.png",
+    "favourite": false
+  },
+  {
+    "id": 24,
+    "name": "Crocodile",
+    "color": [255, 35, 168, 132],
+    "category": "Reptiles & Amphibians",
+    "image": "crocodile.png",
+    "favourite": false
+  },
+  {
+    "id": 25,
+    "name": "Frog",
+    "color": [255, 35, 168, 132],
+    "category": "Reptiles & Amphibians",
+    "image": "frog.png",
+    "favourite": false
+  },
+  {
+    "id": 26,
+    "name": "Snake",
+    "color": [255, 35, 168, 132],
+    "category": "Reptiles & Amphibians",
+    "image": "snake.png",
+    "favourite": false
+  },
+  {
+    "id": 27,
+    "name": "Dolphin",
+    "color": [255, 35, 64, 168],
+    "category": "Water Animals",
+    "image": "dolphin.png",
+    "favourite": false
+  },
+  {
+    "id": 28,
+    "name": "Seal",
+    "color": [255, 35, 64, 168],
+    "category": "Water Animals",
+    "image": "seal.png",
+    "favourite": false
+  },
+  {
+    "id": 29,
+    "name": "Hart",
+    "color": [255, 237, 1, 1],
+    "category": "Wild Animals",
+    "image": "hart.png",
+    "favourite": false
+  },
+  {
+    "id": 30,
+    "name": "Hippo",
+    "color": [255, 237, 1, 1],
+    "category": "Wild Animals",
+    "image": "hippo.png",
+    "favourite": false
+  },
+  {
+    "id": 31,
+    "name": "Penguin",
+    "color": [255, 237, 1, 1],
+    "category": "Wild Animals",
+    "image": "penguin.png",
+    "favourite": false
+  },
+  {
+    "id": 32,
+    "name": "Toucan",
+    "color": [255, 237, 1, 1],
+    "category": "Wild Animals",
+    "image": "toucan.png",
+    "favourite": false
+  }
+]

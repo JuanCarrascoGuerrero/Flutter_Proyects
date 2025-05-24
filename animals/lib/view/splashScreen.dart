@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:animals/view/dashboard.dart';
 import 'package:animals/view/demo1.dart';
+import 'package:animals/view/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (accepted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Dashboard()),
+          MaterialPageRoute(builder: (context) => Menu()),
         );
       } else {
         Navigator.pushReplacement(

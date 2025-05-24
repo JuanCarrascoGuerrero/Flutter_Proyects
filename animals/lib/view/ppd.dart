@@ -24,6 +24,7 @@ class _PpdState extends State<Ppd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -147,7 +148,7 @@ class _PpdState extends State<Ppd> {
                   _acceptPolicy();
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
+                    MaterialPageRoute(builder: (context) => Dashboard("")),
                   );
                 },
                 child: Text("Accept", style: TextStyle(color: Colors.white),),

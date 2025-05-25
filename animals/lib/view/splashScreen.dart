@@ -18,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<bool> _hasAcceptedPolicy() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.clear();/////>-----------------------------------------------------Here we can make the shared preferences persist in the emulator!!!!!
     return pref.getBool("ppd") ?? false;
   }
 

@@ -1,66 +1,23 @@
 import 'package:animals/controller/dataController.dart';
+import 'package:animals/controller/triangleClipper.dart';
 import 'package:animals/view/dashboard.dart';
-import 'package:animals/view/dialog/rateUsDialog.dart';
-import 'package:animals/view/favourites.dart';
-import 'package:animals/view/newCategory.dart';
+import 'package:animals/view/detailAnimal.dart';
+import 'package:animals/view/menu.dart';
 import 'package:animals/view/ppd.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Menu extends StatefulWidget {
-  const Menu({super.key});
+class Favourites extends StatefulWidget {
+  const Favourites({super.key});
 
   @override
-  State<Menu> createState() => _MenuState();
+  State<Favourites> createState() => _FavouritesState();
 }
 
-class _MenuState extends State<Menu> {
-  @override
-  void initState() {
-    context.read<Datacontroller>().loadAnimals();
-    super.initState();
-  }
-
-  Widget buildImage(String category) {
-    //// We cannot read in assets so this is manual toggle to avoid running errors
-    List<String> existInAssets = [
-      "Birds",
-      "Wild Animals",
-      "Water Animals",
-      "Reptiles & Amphibians",
-      "Pet Animals",
-      "Mammals",
-      "Land Animals",
-      "Insects",
-      "Farm Animals",
-    ];
-    String formattedCategory = category.toLowerCase().replaceAll(" ", "_");
-    String imagePath = "assets/animals/$formattedCategory.png";
-
-    if (existInAssets.contains(category)) {
-      return Image.asset(imagePath, width: 150, height: 550, fit: BoxFit.cover);
-    } else {
-      return Image.asset(
-        "assets/img/newCategory.png", // ✅ Fallback image if original is missing
-        width: 150,
-        height: 550,
-        fit: BoxFit.cover,
-      );
-    }
-  }
-
-  void showRateDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return RateUsDialog(); // ✅ Custom widget for the rating dialog
-    },
-  );
-}
-
+class _FavouritesState extends State<Favourites> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+       return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
         child: Stack(
@@ -94,7 +51,7 @@ class _MenuState extends State<Menu> {
                         ), // Change to your desired color
                         child: ListTile(
                           onTap: () {
-                            Navigator.pushReplacement(
+                                                        Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => Favourites(),
@@ -190,9 +147,7 @@ class _MenuState extends State<Menu> {
                   child: Column(
                     children: [
                       ListTile(
-                        onTap: () {
-                          showRateDialog(context);
-                        },
+                        onTap: () {},
                         leading: Icon(
                           Icons.hotel_class_rounded,
                           color: Colors.brown,
@@ -240,89 +195,87 @@ class _MenuState extends State<Menu> {
       body:
           context.watch<Datacontroller>().getModel == null
               ? Center(child: CircularProgressIndicator())
-              : Column(
-                children: [
-                  Expanded(
-                    child: GridView(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Dashboard("")),
-                            );
-                          },
-                          child: Image.asset("assets/animals/all_animals.png"),
-                        ),
-                        for (var i
-                            in context
-                                .watch<Datacontroller>()
-                                .findCategoriesWithColors()) ...[
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              GestureDetector(
+              : SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      Column(
+                        children: [ Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Text(
+                                    "Favourites",
+                                    style: TextStyle(fontSize: 50),
+                                  ),
+                                ),
+                              ),
+                          for (var i in context.watch<Datacontroller>().getFavouriteAnimals()) ...[
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Dashboard(i["category"]),
+                                      builder: (context) => DetailAnimal(i),
                                     ),
                                   );
-                                },
-                                child: buildImage(i["category"]),
-                              ),
-                              Positioned(
-                                // Overlay Rectangle at Bottom
-                                bottom: 0, // Positions it at the bottom of the image
-                                left: 25,
-                                right: 25,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height: 50,
-                                  width: 150, // Adjust height for 20% coverage
-                                  color: Color.fromARGB(
-                                    i["color"][0], // Access first color value
-                                    i["color"][1], // Access second color value
-                                    i["color"][2], // Access third color value
-                                    i["color"][3],
-                                  ), // Semi-transparent background
-                                  child: Center(
-                                    child: Text(
-                                      i["category"], // Category name
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
+                                }, //"Acces to detail with ringtone, etc..."
+                                child: Stack(
+                                  children: [
+                                    i.id! <= 32
+                                        ? Image.asset(
+                                          "assets/animals/" + i.image!,
+                                        )
+                                        : Image.asset(
+                                          "assets/img/newAnimal.png",
+                                        ), // Use your image path
+                                    /*Positioned(
+                                      top:5, left: 5,
+                                      child: Icon(Icons.edit_square,color: Colors.white,)),*/
+                                    Positioned(
+                                      bottom: 0,
+                                      right: 0,
+                                      child: ClipPath(
+                                        clipper: TriangleClipper(),
+                                        child: Container(
+                                          width: 230, // Increase width
+                                          height: 80, // Increase height
+                                          color: Color.fromARGB(
+                                            i.color?[0] ??
+                                                255, // Default to 255 if null
+                                            i.color?[1] ??
+                                                0, // Default to 0 if null
+                                            i.color?[2] ??
+                                                0, // Default to 0 if null
+                                            i.color?[3] ??
+                                                255, // Default to 255 if null
+                                          ),
+                                          padding: EdgeInsets.all(8.0),
+                                          alignment: Alignment.bottomRight,
+                                          child: Text(
+                                            i.name!,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],                      
                         ],
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => NewCategory()),
-                            );
-                          },
-                          child: Image.asset("assets/animals/add.png"),
-                        ),
-                    
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 150),
+                      Text("© 2025 Animals App. All rights reserved."),
+                    ],
                   ),
-                  
-                ],
+                ),
               ),
-              
     );
   }
 }
